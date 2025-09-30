@@ -1,0 +1,65 @@
+.inputWrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.iconContainer {
+  position: absolute;
+  left: 1rem;
+  display: flex;
+  align-items: center;
+  color: #6b7280;
+}
+
+.icon {
+  width: 1.25rem;
+  height: 1.25rem;
+}
+
+.input {
+  width: 100%;
+  padding: 0.875rem 1rem 0.875rem 3rem;
+  background-color: #1a1f26;
+  border: 1px solid #2d3748;
+  border-radius: 0.5rem;
+  color: #ffffff;
+  font-size: 0.875rem;
+  transition: all 0.2s;
+}
+
+.input::placeholder {
+  color: #4b5563;
+  font-size: 0.75rem;
+  letter-spacing: 0.05em;
+}
+
+.input:focus {
+  outline: none;
+  border-color: #3374a2;
+  background-color: #1f2937;
+}
+
+.togglePassword {
+  position: absolute;
+  right: 1rem;
+  background: none;
+  border: none;
+  color: #6b7280;
+  cursor: pointer;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  transition: color 0.2s;
+}
+
+.togglePassword:hover {
+  color: #8eebc1;
+}
+
+@media (max-width: 768px) {
+  .input {
+    padding: 0.75rem 1rem 0.75rem 2.75rem;
+    font-size: 0.8125rem;
+  }
+}

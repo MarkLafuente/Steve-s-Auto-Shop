@@ -1,0 +1,47 @@
+.roleSelector {
+  display: flex;
+  gap: 1rem;
+}
+
+.roleButton {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1.5rem;
+  background-color: #1a1f26;
+  border: 1px solid #2d3748;
+  border-radius: 0.5rem;
+  color: #8b92a0;
+  font-size: 0.875rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.roleButton:hover {
+  border-color: #3374a2;
+  color: #ffffff;
+}
+
+.roleButton.active {
+  background-color: #3374a2;
+  border-color: #3374a2;
+  color: #ffffff;
+}
+
+.icon {
+  width: 1.25rem;
+  height: 1.25rem;
+}
+
+@media (max-width: 480px) {
+  .roleSelector {
+    flex-direction: column;
+  }
+
+  .roleButton {
+    width: 100%;
+  }
+}

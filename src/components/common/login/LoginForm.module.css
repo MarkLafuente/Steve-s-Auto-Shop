@@ -1,0 +1,83 @@
+.formContainer {
+  width: 100%;
+  max-width: 450px;
+}
+
+.welcomeSection {
+  margin: 1.5rem 0;
+  text-align: center;
+}
+
+.welcomeTitle {
+  font-size: 1.75rem;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+  color: #ffffff;
+}
+
+.welcomeSubtitle {
+  font-size: 0.875rem;
+  color: #8b92a0;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.roleSection {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.label {
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: #ffffff;
+}
+
+.inputSection {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.helperText {
+  font-size: 0.75rem;
+  color: #6b7280;
+}
+
+.forgotPassword {
+  font-size: 0.875rem;
+  color: #3374a2;
+  text-decoration: none;
+  align-self: flex-end;
+  transition: color 0.2s;
+}
+
+.forgotPassword:hover {
+  color: #8eebc1;
+}
+
+.footer {
+  margin-top: 2rem;
+  text-align: center;
+  font-size: 0.75rem;
+  color: #6b7280;
+}
+
+@media (max-width: 768px) {
+  .welcomeTitle {
+    font-size: 1.5rem;
+  }
+
+  .welcomeSubtitle {
+    font-size: 0.8125rem;
+  }
+
+  .footer {
+    margin-top: 2rem;
+  }
+}
