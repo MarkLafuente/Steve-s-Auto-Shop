@@ -4,12 +4,12 @@
 }
 
 .welcomeSection {
-  margin: 1.5rem 0;
+  margin: 1.5rem 0; /* Reduced margin to make layout more compact */
   text-align: center;
 }
 
 .welcomeTitle {
-  font-size: 1.75rem;
+  font-size: 1.75rem; /* Reduced font size for more compact view */
   font-weight: 600;
   margin-bottom: 0.5rem;
   color: #ffffff;
@@ -23,7 +23,7 @@
 .form {
   display: flex;
   flex-direction: column;
-  gap: 1.25rem;
+  gap: 1.25rem; /* Reduced gap between form elements */
 }
 
 .roleSection {
@@ -62,7 +62,7 @@
 }
 
 .footer {
-  margin-top: 2rem;
+  margin-top: 2rem; /* Reduced top margin for more compact layout */
   text-align: center;
   font-size: 0.75rem;
   color: #6b7280;

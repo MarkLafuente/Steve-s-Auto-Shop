@@ -1,3 +1,5 @@
+"use client"
+
 import LoginContainer from "../common/login/LoginContainer"
 
 const LoginView = () => {

@@ -1,9 +1,9 @@
 .illustrationContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
   width: 100%;
   max-width: 600px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
 }
 
 .illustration {
@@ -11,10 +11,4 @@
   height: auto;
   max-width: 500px;
   object-fit: contain;
-}
-
-@media (max-width: 1024px) {
-  .illustrationContainer {
-    max-width: 400px;
-  }
 }

@@ -1,3 +1,5 @@
+"use client"
+
 import ForgotPasswordContainer from "../forgotPassword/ForgotPasswordsContainer"
 
 export default function ForgotPasswordView() {

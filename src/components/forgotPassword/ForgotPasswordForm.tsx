@@ -20,7 +20,7 @@ export default function ForgotPasswordForm() {
           <label className={styles.label}>School Email Address</label>
           <InputField
             type="email"
-            placeholder="ENTER YOUR PHINMAD EMAIL"
+            placeholder="ENTER YOUR PHINMAED EMAIL"
             value={state.email}
             onChange={handleEmailChange}
             icon={

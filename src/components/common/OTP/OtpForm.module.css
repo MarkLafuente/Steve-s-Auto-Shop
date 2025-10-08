@@ -1,0 +1,186 @@
+.formContainer {
+  width: 100%;
+  max-width: 450px;
+}
+
+.title {
+  font-size: 2rem;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+  color: #ffffff;
+}
+
+.subtitle {
+  font-size: 0.875rem;
+  color: #9ca3af;
+  margin-bottom: 2.5rem;
+}
+
+/* Updated input group to have no border */
+.inputGroup {
+  margin-bottom: 2.5rem;
+  border-radius: 0.5rem;
+  padding: 1.25rem;
+  background-color: #1a1d2e;
+}
+
+.label {
+  display: block;
+  font-size: 0.875rem;
+  font-weight: 500;
+  margin-bottom: 0.75rem;
+  color: #ffffff;
+}
+
+/* New wrapper for input with icon */
+.inputWrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+  background-color: #2d3142;
+  border: 1px solid #3d4152;
+  border-radius: 0.5rem;
+  padding: 0.75rem 1rem;
+  margin-bottom: 0.75rem;
+}
+
+/* Grid icon styles */
+.gridIcon {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 3px;
+  width: 24px;
+  height: 24px;
+  margin-right: 0.75rem;
+  flex-shrink: 0;
+}
+
+.gridDot {
+  width: 6px;
+  height: 6px;
+  background-color: #6b7280;
+  border-radius: 1px;
+}
+
+/* Updated single input field styles */
+.otpInput {
+  flex: 1;
+  background-color: transparent;
+  border: none;
+  color: #ffffff;
+  font-size: 1rem;
+  outline: none;
+}
+
+.otpInput::placeholder {
+  color: #6b7280;
+}
+
+.helperText {
+  font-size: 0.75rem;
+  color: #9ca3af;
+  margin: 0;
+}
+
+/* Added error message styles */
+.errorText {
+  font-size: 0.75rem;
+  color: #ef4444;
+  margin: 0.5rem 0 0 0;
+}
+
+/* Added success message styles */
+.successText {
+  font-size: 0.75rem;
+  color: #10b981;
+  margin: 0.5rem 0 0 0;
+}
+
+/* Added resend container styles */
+.resendContainer {
+  margin-bottom: 1.5rem;
+  text-align: center;
+}
+
+.resendText {
+  font-size: 0.875rem;
+  color: #9ca3af;
+}
+
+.resendButton {
+  background: none;
+  border: none;
+  color: #10b981;
+  font-size: 0.875rem;
+  font-weight: 500;
+  cursor: pointer;
+  text-decoration: underline;
+  padding: 0;
+  margin-left: 0.25rem;
+}
+
+.resendButton:hover {
+  color: #059669;
+}
+
+.resendButton:disabled {
+  color: #6b7280;
+  cursor: not-allowed;
+  text-decoration: none;
+}
+
+.buttonGroup {
+  display: flex;
+  gap: 1rem;
+}
+
+.backButton {
+  flex: 1;
+  padding: 0.75rem 1.5rem;
+  background-color: transparent;
+  border: 1px solid #3d4152;
+  border-radius: 0.5rem;
+  color: #ffffff;
+  font-size: 0.875rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.backButton:hover {
+  background-color: #2d3142;
+}
+
+.nextButton {
+  flex: 1;
+  padding: 0.75rem 1.5rem;
+  background-color: #10b981;
+  border: none;
+  border-radius: 0.5rem;
+  color: #ffffff;
+  font-size: 0.875rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.nextButton:hover {
+  background-color: #059669;
+}
+
+/* Added disabled button styles */
+.backButton:disabled,
+.nextButton:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.nextButton:disabled:hover {
+  background-color: #10b981;
+}
+
+@media (max-width: 480px) {
+  .inputGroup {
+    padding: 1rem;
+  }
+}
