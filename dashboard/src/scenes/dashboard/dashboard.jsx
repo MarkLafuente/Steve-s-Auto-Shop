@@ -1,16 +1,5 @@
 import { useState } from "react";
-import {
-  Box,
-  Button,
-  Typography,
-  Dialog,
-  DialogTitle,
-  DialogContent,
-  DialogActions,
-  useTheme,
-  Tabs,
-  Tab
-} from "@mui/material";
+import {Box, Button, Typography, Dialog, DialogTitle, DialogContent, DialogActions, Menu, MenuItem, useTheme, Tabs, Tab} from "@mui/material";
 import { mockData } from "../../model/mockData";
 import Papa from "papaparse";
 import Header from "../../components/header";
@@ -21,16 +10,8 @@ import ErrorIcon from "@mui/icons-material/Error";
 import FileUploadIcon from '@mui/icons-material/FileUpload';
 import { tokens } from "../../theme";
 import { Bar, Pie } from "react-chartjs-2";
-import {
-  Chart as ChartJS,
-  CategoryScale,
-  LinearScale,
-  BarElement,
-  Title,
-  Tooltip,
-  Legend,
-  ArcElement,
-} from "chart.js";
+import FilterListIcon from '@mui/icons-material/FilterList';
+import { Chart as ChartJS, CategoryScale,LinearScale, BarElement, Title, Tooltip, Legend, ArcElement} from "chart.js";
 
 
 ChartJS.register(
@@ -68,6 +49,12 @@ const Dashboard = () => {
     "Date",
     "Status",
   ];
+
+  const [selectedPeriod, setSelectedPeriod] = useState("All Periods");
+  const [anchorEl, setAnchorEl] = useState(null);
+
+  const periods = ["All Periods", "1st Period", "2nd Period", "3rd Period", "4th Period"];
+
   const currentHeaders =
     activeTab === "grades" ? requiredHeadersGrades : requiredHeadersAttendance;
 
@@ -87,7 +74,7 @@ const Dashboard = () => {
             ? requiredHeadersGrades
             : requiredHeadersAttendance;
 
-        // Case-insensitive comparison
+        // case-insensitive comparison
         const headersLower = headers.map(h => h.toLowerCase());
         const requiredLower = currentHeaders.map(h => h.toLowerCase());
         
@@ -122,7 +109,7 @@ const Dashboard = () => {
     }
 
     console.log("📤 Importing:", selectedFile.name);
-    //send parsed data to backend API here (fetch/axios)
+    //send parsed data to backend API 
 
     setShowImportDialog(false);
     setSelectedFile(null);
@@ -147,18 +134,42 @@ const Dashboard = () => {
     document.body.removeChild(link);
   };
 
+  const handleFilterClick = (event) => {
+  setAnchorEl(event.currentTarget);
+  };
+
+  const handleFilterClose = () => {
+    setAnchorEl(null);
+  };
+
+  const handlePeriodSelect = (period) => {
+    setSelectedPeriod(period);
+    handleFilterClose();
+    // add  filtering logic here
+    console.log("Selected period:", period);
+  };
+
   return (
     <Box m="30px">
       <Box display="flex" justifyContent="space-between" alignItems="left">
         <Header title="Dashboard" subtitle="Manage and monitor student performance" />
-        <Box>
+        <Box
+          // display="flex" 
+          flexWrap="wrap"
+          gap={2}
+          sx={{
+            width: { xs: "100%", md: "auto" },
+          }}
+        >
           <Button
             sx={{
+              flex: { xs: "1 1 calc(50% - 8px)", sm: "0 1 auto" },
+              minWidth: { xs: "auto", sm: "140px" },
               mr: 2,
               background: `linear-gradient(90deg, ${colors.logoGreen[400]}  0%, ${colors.logoBlue[400]} 100%)`,
               color: "#263238",
               textTransform: "none",
-              fontWeight: "bold",
+              fontWeight: "semibold",
               borderRadius: "10px",
               px: 3,
               py: 1,
@@ -175,11 +186,13 @@ const Dashboard = () => {
 
           <Button
             sx={{
+              flex: { xs: "1 1 calc(50% - 8px)", sm: "0 1 auto" },
+              minWidth: { xs: "auto", sm: "140px" },
               mr: 2,
               background: "#fff",
               color: "#263238",
               textTransform: "none",
-              fontWeight: "bold",
+              fontWeight: "semibold",
               borderRadius: "10px",
               px: 3,
               py: 1,
@@ -191,6 +204,54 @@ const Dashboard = () => {
           >
             Export Data
           </Button>
+
+          <Button
+          sx={{
+            flex: { xs: "1 1 calc(50% - 8px)", sm: "0 1 auto" },
+            minWidth: { xs: "auto", sm: "140px" },
+            background: "#fff",
+            color: "#263238",
+            textTransform: "none",
+            fontWeight: "semibold",
+            borderRadius: "10px",
+            px: 3,
+            py: 1,
+            boxShadow: "0px 4px 10px rgba(0,0,0,0.2)",
+            "&:hover": { background: "#e6e6e6ff" },
+          }}
+          startIcon={<FilterListIcon />}
+          onClick={handleFilterClick}
+        >
+          {selectedPeriod}
+        </Button>
+
+        <Menu
+          anchorEl={anchorEl}
+          open={Boolean(anchorEl)}
+          onClose={handleFilterClose}
+          PaperProps={{
+            sx: {
+              mt: 1,
+              borderRadius: "10px",
+              boxShadow: "0px 4px 10px rgba(0,0,0,0.2)",
+            },
+          }}
+        >
+          {periods.map((period) => (
+            <MenuItem
+              key={period}
+              onClick={() => handlePeriodSelect(period)}
+              sx={{
+                backgroundColor: selectedPeriod === period ? colors.logoBlue[100] : "transparent",
+                "&:hover": {
+                  backgroundColor: colors.logoBlue[50],
+                },
+              }}
+            >
+              {period}
+            </MenuItem>
+          ))}
+        </Menu>
         </Box>
       </Box>
 
@@ -203,7 +264,7 @@ const Dashboard = () => {
         sx: {
         backgroundColor: "#fff", 
         color: "#000",              
-        borderRadius: "10px",       
+        borderRadius: "20px",       
         padding: 1,                
     },
   }}

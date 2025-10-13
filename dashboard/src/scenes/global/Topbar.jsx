@@ -113,7 +113,7 @@ const Topbar = () => {
           PaperProps={{
             sx: {
               bgcolor: colors.blackBackground[500],
-              color: colors.logoBlue[100],
+              color: colors.logoBlue[500],
               width: 300,
               borderRadius: "10px",
             },
@@ -127,7 +127,7 @@ const Topbar = () => {
               >
                 <Box>
                   <Typography variant="body1">{notification.message}</Typography>
-                  <Typography variant="caption" color={colors.logoBlue[200]}>
+                  <Typography variant="caption" color={colors.logoBlue[400]}>
                     {notification.time}
                   </Typography>
                 </Box>

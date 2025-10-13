@@ -142,12 +142,12 @@ const Courses = () => {
     <Box m="30px">
       <Box display="flex" justifyContent="space-between" alignItems="center">
         <Header title="Courses" subtitle="Track performance and engagement by course" fontWeight={500}/>
-        <Button
+        {/* <Button
           sx={{
             background: `linear-gradient(90deg, ${colors.logoGreen[400]} 0%, ${colors.logoBlue[400]} 100%)`,
             color: "#263238",
             textTransform: "none",
-            fontWeight: "bold",
+            fontWeight: "semibold",
             borderRadius: "10px",
             px: 3,
             py: 1,
@@ -160,7 +160,7 @@ const Courses = () => {
           onClick={() => setShowAddDialog(true)}
         >
           Add Course
-        </Button>
+        </Button> */}
       </Box>
       
       {/* Statistics Cards */}
@@ -169,7 +169,7 @@ const Courses = () => {
         gridTemplateColumns="repeat(4, 1fr)"
         gap="20px"
         mb="20px"
-        mt="40px"
+        mt="20px"
       >
         <Box
           bgcolor={colors.blueCard[500]}
@@ -254,7 +254,7 @@ const Courses = () => {
       </Box>
 
       {/* Add Course Dialog */}
-      <Dialog
+      {/* <Dialog
         open={showAddDialog}
         onClose={() => setShowAddDialog(false)}
         fullWidth
@@ -263,7 +263,7 @@ const Courses = () => {
           sx: {
             backgroundColor: "#fff",
             color: "#000",
-            borderRadius: "10px",
+            borderRadius: "20px",
             padding: 1,
           },
         }}
@@ -360,7 +360,7 @@ const Courses = () => {
             Add Course
           </Button>
         </DialogActions>
-      </Dialog>
+      </Dialog> */}
     </Box>
   );
 };
