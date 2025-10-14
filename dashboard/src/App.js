@@ -13,6 +13,12 @@ import SignOutDialog from "./components/SignOutDialog";
 import Login from "./scenes/auth/Login";
 import SignUp from "./scenes/auth/SignUp";
 import StudentDashboard from "./scenes/student_side/student_side";
+import AdminDashboard from "./scenes/admin_side/adminDashboard";
+import AdminTopbar from "./scenes/admin_side/adminTopbar";
+import AdminSidebar from "./scenes/admin_side/adminSidebar";
+import TeachersManagement from "./scenes/admin_side/teachersManagement";
+import StudentsManagement from "./scenes/admin_side/studentsManagement";
+import CoursesManagement from "./scenes/admin_side/coursesManagement";
 import { useState } from "react";
 
 function App() {
@@ -66,6 +72,72 @@ function App() {
       </ColorModeContext.Provider>
     );
   }
+
+  // Admin view
+  if (userRole === "admin") {
+    return (
+      <ColorModeContext.Provider value={colorMode}>
+        <ThemeProvider theme={theme}>
+          <CssBaseline />
+          <div className="app" style={{ display: "flex", height: "100vh" }}>
+            {/* Sidebar on the left */}
+            <AdminSidebar />
+
+            {/* Main content on the right */}
+            <Box
+              component="main"
+              className="content"
+              sx={{
+                flexGrow: 1,
+                overflow: "auto",
+                height: "100vh",
+                display: "flex",
+                flexDirection: "column",
+              }}
+            >
+              {/* Topbar on top */}
+              <AdminTopbar onSignOutClick={() => setShowSignOut(true)} />
+
+              {/* Routed pages below */}
+              <Box sx={{ flex: 1, p: 2 }}>
+                <Routes>
+                  <Route path="/admin/dashboard" element={
+                    <ProtectedRoute>
+                      <AdminDashboard />
+                    </ProtectedRoute>
+                  } />
+                  <Route path="/teachersManagement" element={
+                    <ProtectedRoute>
+                      <TeachersManagement />
+                    </ProtectedRoute>
+                  } />
+                  <Route path="/studentsManagement" element={
+                    <ProtectedRoute>
+                      <StudentsManagement />
+                    </ProtectedRoute>
+                  } />
+                  <Route path="/coursesManagement" element={
+                    <ProtectedRoute>
+                      <CoursesManagement />
+                    </ProtectedRoute>
+                  } />
+                  <Route path="*" element={<Navigate to="/admin/dashboard" replace />} />
+                </Routes>
+              </Box>
+
+              {/* Sign Out Dialog */}
+              <SignOutDialog
+                open={showSignOut}
+                onClose={() => setShowSignOut(false)}
+                onConfirm={handleSignOut}
+              />
+            </Box>
+          </div>
+        </ThemeProvider>
+      </ColorModeContext.Provider>
+    );
+  }
+
 
   // Student view 
   if (userRole === "student") {

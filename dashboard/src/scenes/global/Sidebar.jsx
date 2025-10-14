@@ -54,24 +54,28 @@ const Sidebar = ({ onSignOut, isCollapsed, setIsCollapsed }) => {
                 zIndex: 1000,
                 "& .pro-sidebar-inner": {
                     background: `${colors.blackBackground[500]} !important`,
-                    height: "100vh",          // Add this to ensure full height
+                },
+                "& .pro-icon": {
+                color: `${colors.logoBlue[300]} !important`,
                 },
                 "& .pro-icon-wrapper": {
                 backgroundColor: "transparent !important",
                 },
-                "& .pro-inner-item": {
+                 "& .pro-inner-item": {
                 padding: "5px 35px 5px 20px !important",
+                color: `${colors.logoBlue[300]} !important`,
+                transition: "color 0.2s ease",
                 },
                 "& .pro-inner-item:hover": {
-                color: "#4f9dd5ff !important",
+                color: `${colors.logoBlue[300]} !important`,
                 },
                 "& .pro-menu-item.active": {
-                color: "#3374A2 !important",
+                color: `${colors.logoBlue[500]} !important`,
                 },
                 "& .signout-item:hover": {
                 color: "#e42c2cff !important", 
                 },
-                "& .signout-item:hover .pro-icon-wrapper": {  // Add this for icon hover
+                "& .signout-item:hover .pro-icon-wrapper": { 
                     color: "#f96a6aff !important",
                 },
 

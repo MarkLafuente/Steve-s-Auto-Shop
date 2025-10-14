@@ -53,7 +53,7 @@ const Topbar = () => {
         />
       </Box>
 
-      <Box display="flex" alignItems="center" gap={2}>
+      <Box display="flex" alignItems="center" gap={1}>
         {/* user profile */}
         <Box
           display="flex"

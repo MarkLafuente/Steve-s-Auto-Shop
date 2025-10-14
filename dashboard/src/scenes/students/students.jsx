@@ -161,7 +161,7 @@ const Students = () => {
       {/* Search and Filter Controls */}
       <Box display="flex" gap="20px" mt="40px" mb="20px">
         <TextField
-          label="Search students"
+          placeholder="Search students"
           variant="outlined"
           value={searchText}
           onChange={handleSearch}
@@ -180,7 +180,7 @@ const Students = () => {
           sx={{
             width: "200px",
             "& .MuiOutlinedInput-root": {
-              borderRadius: "12px", 
+              borderRadius: "10px", 
           }
   }}
         >
@@ -199,7 +199,7 @@ const Students = () => {
           sx={{
             width: "200px",
             "& .MuiOutlinedInput-root": {
-              borderRadius: "12px", 
+              borderRadius: "10px", 
             }
           }}
         >

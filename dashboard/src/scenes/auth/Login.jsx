@@ -34,24 +34,39 @@ const Login = ({ onLoginSuccess }) => {
     // temporary credentials
     const validTeacherEmail = "teacher@gmail.com";
     const validStudentEmail = "student@gmail.com";
+    const validAdminEmail = "admin@gmail.com";
     const validPassword = "passwords1234";
 
-    if (role === "teacher") {
-      if (email === validTeacherEmail && password === validPassword) {
-        console.log("Integrate backend here.");
-        onLoginSuccess("teacher");
-        navigate("/");
-      } else {
-        alert("Invalid teacher email or password.");
-      }
-    } else {
-      if (email === validStudentEmail && password === validPassword) {
-        console.log("✅ Student login successful — integrate backend here.");
-        onLoginSuccess("student");
-        navigate("/student_side");
-      } else {
-        alert("Invalid student email or password.");
-      }
+     let detectedRole = null;
+    
+    if (email === validTeacherEmail) {
+      detectedRole = "teacher";
+    } else if (email === validStudentEmail) {
+      detectedRole = "student";
+    } else if (email === validAdminEmail) {
+      detectedRole = "admin";
+    }
+
+    if (!detectedRole) {
+      alert("Email not recognized. Please use a valid PHINMAED email.");
+      return;
+    }
+
+    if (password !== validPassword) {
+      alert(`Invalid password for ${detectedRole}.`);
+      return;
+    }
+
+    // Login successful
+    console.log(`✅ ${detectedRole} login successful`);
+    onLoginSuccess(detectedRole);
+    
+    if (detectedRole === "teacher") {
+      navigate("/");
+    } else if (detectedRole === "student") {
+      navigate("/student_side");
+    } else if (detectedRole === "admin") {
+      navigate("/adminDashboard");
     }
   };
 

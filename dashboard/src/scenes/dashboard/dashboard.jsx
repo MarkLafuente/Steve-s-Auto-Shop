@@ -266,8 +266,8 @@ const Dashboard = () => {
         color: "#000",              
         borderRadius: "20px",       
         padding: 1,                
-    },
-  }}
+        },
+      }}
     >
     <DialogTitle sx={{ display: "flex", alignItems: "center", gap: 1 }}>
         <UploadIcon sx={{ fontSize: 20, color: "#000" }} />
@@ -412,77 +412,78 @@ const Dashboard = () => {
       )}
     </Box>
 
-  {/* Required Columns Box */}
-  <Box
-    sx={{
-      backgroundColor: "#E0F2FE",
-      p: 2.5,
-      borderRadius: "12px",
-      mt: 2,
-    }}
-  >
-    <Typography fontWeight={600} mb={1} fontSize="14px" color="#000">
-      Required Columns for {activeTab === "grades" ? "Grades" : "Attendance"}:
-    </Typography>
-    {currentHeaders.map((header) => (
-      <Typography key={header} variant="body2" color="#000">
-        • {header}
+    {/* Required Columns Box */}
+    <Box
+      sx={{
+        backgroundColor: "#E0F2FE",
+        p: 2.5,
+        borderRadius: "12px",
+        mt: 2,
+      }}
+    >
+      <Typography fontWeight={600} mb={1} fontSize="14px" color="#000">
+        Required Columns for {activeTab === "grades" ? "Grades" : "Attendance"}:
       </Typography>
-    ))}
+      {currentHeaders.map((header) => (
+        <Typography key={header} variant="body2" color="#000">
+          • {header}
+        </Typography>
+      ))}
+
+      <Button
+      variant="contained"
+      sx={{
+        borderRadius: "10px",
+        mt: 3,
+        color:"#fff",
+        backgroundColor: colors.logoBlue[500],
+        '&:hover': {
+          backgroundColor: colors.logoBlue[600],
+        },
+      }}
+      href={activeTab === "grades" ? "/grades.xlsx" : "/attendance.xlsx"}
+      download={activeTab === "grades" ? "Grades.xlsx" : "Attendance.xlsx"}
+    >
+      Download {activeTab === "grades" ? "Grades" : "Attendance"} Template
+    </Button>
+    </Box>
+  </DialogContent>
+
+  {/* Footer Buttons */}
+  <DialogActions sx={{ px: 3, pb: 2 }}>
+    <Button
+      variant="contained"
+      onClick={() => setShowImportDialog(false)}
+      sx={{
+        backgroundColor: "#fff",
+        color: "#000",
+        textTransform: "none",
+        border: "1px solid #d1d5db",
+        "&:hover": { backgroundColor: "#f3f4f6" },
+      }}
+    >
+      Cancel
+    </Button>
 
     <Button
-    variant="contained"
-    sx={{
-      borderRadius: "10px",
-      mt: 3,
-      color:"#fff",
-      backgroundColor: colors.logoBlue[500],
-      '&:hover': {
-        backgroundColor: colors.logoBlue[600],
-      },
-    }}
-    href={activeTab === "grades" ? "/grades.xlsx" : "/attendance.xlsx"}
-    download={activeTab === "grades" ? "Grades.xlsx" : "Attendance.xlsx"}
-  >
-    Download {activeTab === "grades" ? "Grades" : "Attendance"} Template
-  </Button>
-  </Box>
-</DialogContent>
+      variant="contained"
+      onClick={handleImport}
+      sx={{
+        background: `linear-gradient(90deg, ${colors.logoGreen[400]}  0%, ${colors.logoBlue[400]} 100%)`,
+        color: "#fff",
+        textTransform: "none",
+        px: 3,
+        "&:hover": {
+          background: `linear-gradient(90deg, ${colors.logoGreen[500]}  0%, ${colors.logoBlue[500]} 100%)`,
+        },
+      }}
+    >
+      Upload
+    </Button>
+  </DialogActions>
+</Dialog>
 
-{/* Footer Buttons */}
-<DialogActions sx={{ px: 3, pb: 2 }}>
-  <Button
-    variant="contained"
-    onClick={() => setShowImportDialog(false)}
-    sx={{
-      backgroundColor: "#fff",
-      color: "#000",
-      textTransform: "none",
-      border: "1px solid #d1d5db",
-      "&:hover": { backgroundColor: "#f3f4f6" },
-    }}
-  >
-    Cancel
-  </Button>
 
-  <Button
-    variant="contained"
-    onClick={handleImport}
-    sx={{
-      background: `linear-gradient(90deg, ${colors.logoGreen[400]}  0%, ${colors.logoBlue[400]} 100%)`,
-      color: "#fff",
-      textTransform: "none",
-      px: 3,
-      "&:hover": {
-        background: `linear-gradient(90deg, ${colors.logoGreen[500]}  0%, ${colors.logoBlue[500]} 100%)`,
-      },
-    }}
-  >
-    Upload
-  </Button>
-</DialogActions>
-
-      </Dialog>
       {/* stats Cards */}
       <Box display="grid" gridTemplateColumns="repeat(4, 1fr)" gap="20px" my="20px">
         <Box bgcolor={colors.blueCard[500]} p="20px" borderRadius="10px" textAlign="left">
@@ -579,32 +580,6 @@ const Dashboard = () => {
             </Box>
           ))}
         </Box>
-
-        {/* <Box bgcolor={colors.grayCard[500]} p="20px" borderRadius="10px">
-          <Typography mb="20px" fontWeight={500}>
-            Grade Distribution
-          </Typography>
-          <Box height="300px">
-            <Pie
-              data={{
-                labels: mockData.gradeDistribution.labels,
-                datasets: [
-                  {
-                    data: mockData.gradeDistribution.data,
-                    backgroundColor: [
-                      colors.orangeChart[500],
-                      colors.blueChart[500],
-                      colors.purpleChart[500],
-                      colors.greenChart[500],
-                      colors.redChart[500],
-                    ],
-                  },
-                ],
-              }}
-              options={{ responsive: true, maintainAspectRatio: false }}
-            />
-          </Box>
-        </Box> */}
       </Box>
 
       <Box textAlign="center" pb="20px">
