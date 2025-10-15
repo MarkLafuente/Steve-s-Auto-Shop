@@ -1,6 +1,6 @@
 
 
-export async function getOverAllAnalytics() {
+export async function getOverAllAnalytics(req, res) {
     try {
         const totalStudents = await User.countDocuments({ role: 'student', isActive: true });
         const totalTeachers = await User.countDocuments({ role: 'teacher', isActive: true });
@@ -18,7 +18,7 @@ export async function getOverAllAnalytics() {
     }
 }
 
-export async function getPerformanceStatisticsbyCourse() {
+export async function getPerformanceStatisticsbyCourse(req, res) {
     try {
         const { courseId } = req.params;
 
@@ -68,7 +68,7 @@ export async function getPerformanceStatisticsbyCourse() {
     }
 }
 
-export async function getPassingRate() {
+export async function getPassingRate(req, res) {
     try {
         const performances = await StudentPerformance.find();
 
@@ -95,7 +95,7 @@ export async function getPassingRate() {
     }
 }
 
-export async function getAtRiskStudents() {
+export async function getAtRiskStudents(req, res) {
     try {
         const { courseId, riskLevel = 'high' } = req.query;
         const filter = { riskLevel };

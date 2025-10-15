@@ -1,4 +1,5 @@
 import User from "../models/UserModel.js";
+import Course from "../models/Course.js"
 
 export async function getAllCourse(req, res) {
   try {

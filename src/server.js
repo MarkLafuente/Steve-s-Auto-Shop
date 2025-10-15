@@ -16,8 +16,11 @@ const PORT = process.env.PORT || 8000;
 app.use(
     cors({
         origin: [
-            "http://localhost:5173"
+            "http://localhost:3000",
+
         ],
+        credentials: true,
+        allowedHeaders: ['Content-Type', 'Authorization']
     }
     ));
 
