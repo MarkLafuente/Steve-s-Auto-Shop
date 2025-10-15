@@ -48,7 +48,7 @@ const AdminSidebar = () => {
         },
         "& .pro-inner-item": {
           padding: "5px 35px 5px 20px !important",
-          color: `${colors.logoBlue[300]} !important`,
+          color: `${colors.logoBlue[200]} !important`,
           transition: "color 0.2s ease",
         },
         "& .pro-inner-item:hover": {
