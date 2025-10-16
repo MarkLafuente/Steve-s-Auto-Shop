@@ -1,10 +1,10 @@
 "use client"
 
-
 import { useState } from "react"
+import { useNavigate } from "react-router-dom"
 import { otpService } from "../services/otpService"
 import { validateOtp } from "../models/OtpModel"
-import type { OtpModel, OtpResponse } from "../models/OtpModel"
+import type { OtpModel } from "../models/OtpModel"
 
 interface UseOtpControllerReturn {
   otp: string
@@ -22,57 +22,37 @@ export const useOtpController = (email?: string): UseOtpControllerReturn => {
   const [isLoading, setIsLoading] = useState<boolean>(false)
   const [error, setError] = useState<string | null>(null)
   const [isSuccess, setIsSuccess] = useState<boolean>(false)
+  const navigate = useNavigate()
 
   const handleOtpChange = (value: string) => {
-    
     if (/^\d*$/.test(value)) {
       setOtp(value)
-      setError(null) 
+      setError(null)
     }
   }
 
   const handleSubmit = async () => {
     setError(null)
-
-   
     const validation = validateOtp(otp)
     if (!validation.isValid) {
       setError(validation.errors[0])
       return
     }
 
-    setIsLoading(true)
+    navigate("/change-password")
 
     try {
-      const otpData: OtpModel = {
-        code: otp,
-        email: email,
-      }
-
-      const response: OtpResponse = await otpService.verifyOtp(otpData)
-
-      if (response.success) {
-        setIsSuccess(true)
-        
-        if (response.data?.token) {
-          localStorage.setItem("authToken", response.data.token)
-        }
-        
-        console.log("OTP verified successfully:", response)
-      } else {
-        setError(response.message || "Invalid OTP")
-      }
+      const otpData: OtpModel = { code: otp, email: email }
+      otpService.verifyOtp(otpData).catch((err) => {
+        console.error("OTP verification failed:", err)
+      })
     } catch (err) {
-      setError(err instanceof Error ? err.message : "Failed to verify OTP")
-    } finally {
-      setIsLoading(false)
+      console.error(err)
     }
   }
 
   const handleBack = () => {
-   
-    console.log("Navigating back...")
-    
+    window.history.back()
   }
 
   const handleResend = async () => {
@@ -88,7 +68,6 @@ export const useOtpController = (email?: string): UseOtpControllerReturn => {
       const response = await otpService.resendOtp(email)
       if (response.success) {
         console.log("OTP resent successfully")
-      
       }
     } catch (err) {
       setError(err instanceof Error ? err.message : "Failed to resend OTP")

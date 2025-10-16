@@ -1,7 +1,7 @@
 "use client"
 
 
-import styles from "../components/change_password/PasswordSuccess.module.css"
+import styles from "../common/password_success/PasswordSuccess.module.css"
 
 interface PasswordSuccessViewProps {
   onDoneClick: () => void

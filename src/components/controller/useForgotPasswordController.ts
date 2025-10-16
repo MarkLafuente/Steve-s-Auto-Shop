@@ -1,13 +1,13 @@
 "use client"
 
 import type React from "react"
-
 import { useState } from "react"
-import type { ForgotPasswordState, ForgotPasswordFormData } from "../models/ForgotPasswordModel"
-import { forgotPasswordService } from "../services/forgotPasswordService"
+import { useNavigate } from "react-router-dom"
 
 export const useForgotPasswordController = () => {
-  const [state, setState] = useState<ForgotPasswordState>({
+  const navigate = useNavigate()
+
+  const [state, setState] = useState({
     email: "",
     isLoading: false,
     error: null,
@@ -15,35 +15,12 @@ export const useForgotPasswordController = () => {
   })
 
   const handleEmailChange = (email: string) => {
-    setState((prev) => ({ ...prev, email, error: null }))
+    setState((prev) => ({ ...prev, email }))
   }
 
-  const validateEmail = (email: string): boolean => {
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
-    return emailRegex.test(email)
-  }
-
-  const handleSubmit = async (e: React.FormEvent) => {
+  const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault()
-
-    if (!validateEmail(state.email)) {
-      setState((prev) => ({ ...prev, error: "Please enter a valid email address" }))
-      return
-    }
-
-    setState((prev) => ({ ...prev, isLoading: true, error: null }))
-
-    try {
-      const formData: ForgotPasswordFormData = { email: state.email }
-      await forgotPasswordService.sendResetPin(formData)
-      setState((prev) => ({ ...prev, isLoading: false, success: true }))
-    } catch (error) {
-      setState((prev) => ({
-        ...prev,
-        isLoading: false,
-        error: "Failed to send reset pin. Please try again.",
-      }))
-    }
+    navigate("/otp-view")
   }
 
   const handleBack = () => {

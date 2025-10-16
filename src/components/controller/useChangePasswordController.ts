@@ -1,8 +1,7 @@
-
-
 "use client"
 
 import { useState } from "react"
+import { useNavigate } from "react-router-dom"
 import type { ChangePasswordData } from "../models/ChangePasswordModel"
 import { ChangePasswordValidator } from "../models/ChangePasswordModel"
 import { changePasswordService } from "../services/changePasswordService"
@@ -14,6 +13,7 @@ export const useChangePasswordController = () => {
   const [isLoading, setIsLoading] = useState(false)
   const [error, setError] = useState<string | null>(null)
   const [isSuccess, setIsSuccess] = useState(false)
+  const navigate = useNavigate()
 
   const handleSubmit = async () => {
     setError(null)
@@ -25,46 +25,24 @@ export const useChangePasswordController = () => {
       confirmPassword,
     }
 
-    
     const validationError = ChangePasswordValidator.validateAll(data)
     if (validationError) {
       setError(validationError.message)
       return
     }
 
-    setIsLoading(true)
+    navigate("/password-success")
 
     try {
-      const response = await changePasswordService.changePassword(data)
-
-      if (response.success) {
-        setIsSuccess(true)
-        
-        setCurrentPassword("")
-        setNewPassword("")
-        setConfirmPassword("")
-        
-        setTimeout(() => {
-          
-          console.log("Password changed successfully")
-        }, 2000)
-      } else {
-        setError(response.message || "Failed to change password")
-      }
+      changePasswordService.changePassword(data).catch((err) => {
+        console.error("Password change failed:", err)
+      })
     } catch (err) {
-      if (err instanceof Error) {
-        setError(err.message)
-      } else {
-        setError("An unexpected error occurred")
-      }
-    } finally {
-      setIsLoading(false)
+      console.error(err)
     }
   }
 
   const handleBack = () => {
-    
-    console.log("Navigate back")
     window.history.back()
   }
 
